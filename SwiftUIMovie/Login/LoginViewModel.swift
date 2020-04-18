@@ -10,27 +10,43 @@ import Foundation
 import SwiftUI
 
 class LoginViewModel : ObservableObject {
+    let viewRouter:ViewRouter!
+    
+    init(router:ViewRouter) {
+        self.viewRouter = router
+    }
+    
     @Published var userName = "admin" {
         didSet {
-            self.validateFields()
+            self.changeLoginButtonState()
         }
     }
     
     @Published var userPass = String() {
         didSet{
-            self.validateFields()
+            self.changeLoginButtonState()
         }
     }
     
     @Published var isLoginEnable = false
-    
-    private func validateFields(){
-        
-        if (userName.lowercased() == Config.testUserName && userPass.lowercased() == Config.testPassword) {
-            isLoginEnable = true
+    @Published var isLoginAlertShown = false
+
+    private func changeLoginButtonState(){
+        if (userName.count > 0 && userPass.count > 0) {
+            self.isLoginEnable = true
         }
         else{
-            isLoginEnable = false
+            self.isLoginEnable = false
+        }
+    }
+    
+     func validateLoginButton() {
+        if (userName.lowercased() == Config.testUserName && userPass.lowercased() == Config.testPassword) {
+             viewRouter.currentPageId = .home
+        }
+        else{
+            self.isLoginEnable = false
+            self.isLoginAlertShown = true
         }
     }
     

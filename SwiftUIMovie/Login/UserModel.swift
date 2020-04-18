@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+//unused so far.
 class UserModel:Codable {
     var userName:String? = "admin"
     var password:String?

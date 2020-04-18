@@ -12,22 +12,23 @@ import SwiftUI
  * Login View for user
  */
 struct LoginView: View {
-    @State var password: String = ""
     @ObservedObject var loginViewModel: LoginViewModel //injected when LoginView instantiated.
     
     var body: some View {
-        VStack {
-            LoginTitle()
-            UserNameField(userNameString: $loginViewModel.userName)
-            PasswordField(passwordString: $loginViewModel.userPass)
-            LoginButton(isLoginEnabled: $loginViewModel.isLoginEnable)
-        }.padding(Constants.Styles.pagePadding50)
+        NavigationView {
+            VStack {
+                LoginTitle()
+                UserNameField(userNameString: $loginViewModel.userName)
+                PasswordField(passwordString: $loginViewModel.userPass)
+                LoginButton(loginViewModel: loginViewModel)
+            }.padding(Constants.Styles.pagePadding50)
+        }
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(loginViewModel: LoginViewModel())
+        LoginView(loginViewModel: LoginViewModel(router: ViewRouter()))
     }
 }
 
@@ -44,7 +45,6 @@ struct LoginTitle : View {
 
 struct UserNameField:View {
     var userNameString:Binding<String>
-//    @State var username: String = ""
     var body:some View {
         TextField("Username", text: userNameString)
             .padding()
@@ -56,8 +56,6 @@ struct UserNameField:View {
 
 struct PasswordField:View {
     var passwordString:Binding<String>
-//    @State var password: String = ""
-    
     var body:some View {
         SecureField("Password", text: passwordString)
             .padding()
@@ -68,27 +66,31 @@ struct PasswordField:View {
 }
 
 struct LoginButton:View{
-    var isLoginEnabled:Binding<Bool>
+    @ObservedObject var loginViewModel: LoginViewModel
+    
     var body:some View {
         
         Button(action: {
-                //your action here
-            print("Cliiiked!!!")
+            self.loginViewModel.validateLoginButton()
             }) {
-                 
-                      Text("LOGIN")
-                          .font(.headline)
-                          .foregroundColor(.white)
-                          .padding()
-                          .frame(width: 220, height: 60)
-                        .background(isLoginEnabled.wrappedValue ? Constants.Colors.buttonBlue  : Constants.Colors.darkGray)
-                          .cornerRadius(Constants.Styles.largeCornerRadius)
-            }
-        .disabled(!isLoginEnabled.wrappedValue)
-      
-        
+            Text("LOGIN")
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(width: 220, height: 60)
+                .background(loginViewModel.isLoginEnable ? Constants.Colors.buttonBlue  : Constants.Colors.darkGray)
+                .cornerRadius(Constants.Styles.largeCornerRadius)
+        }
+        .alert(isPresented: $loginViewModel.isLoginAlertShown) {
+                   Alert(title: Text("Invalid Credentails !!"), message: Text("Please login with valid username or password"), dismissButton: .default(Text("OK")))
+               }
+        .disabled(!loginViewModel.isLoginEnable)
+         
     }
+    
+    /*
+     NavigationLink(destination: MovieListView(), isActive:  $loginViewModel.isLoginEnable) {
+     */
+    
 }
-
-
 
