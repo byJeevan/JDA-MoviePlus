@@ -12,13 +12,13 @@ import SwiftUI
 struct RootView : View {
     
     @ObservedObject var viewRouter: ViewRouter
-    
+    let networkManager = NetworkManager()
     var body: some View {
         VStack {
             if viewRouter.currentPageId == .login {
                 LoginView(loginViewModel: LoginViewModel(router:viewRouter))
             } else if viewRouter.currentPageId == .home {
-                MovieListView(movieListViewModel:MovieListViewModel(router:viewRouter), router:viewRouter)
+                MovieListView(movieListViewModel:MovieListViewModel(router:viewRouter, networkManager:networkManager), router:viewRouter)
             }
         }
         

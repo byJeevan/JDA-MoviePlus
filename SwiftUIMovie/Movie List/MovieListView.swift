@@ -14,7 +14,6 @@ import SwiftUI
 struct MovieListView: View {
     @ObservedObject var movieListViewModel:MovieListViewModel
     let router:ViewRouter
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -28,7 +27,7 @@ struct MovieListView: View {
 
 struct MovieListView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieListView(movieListViewModel: MovieListViewModel(router: ViewRouter()), router: ViewRouter())
+        MovieListView(movieListViewModel: MovieListViewModel(router: ViewRouter(), networkManager: NetworkManager()), router: ViewRouter())
     }
 }
 
@@ -37,7 +36,6 @@ struct LogoutButton:View{
     @ObservedObject var viewRouter: ViewRouter
     
     var body:some View {
-        
         Button(action: {
             self.viewRouter.currentPageId = .login
         }) {
