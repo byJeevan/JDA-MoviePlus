@@ -18,7 +18,7 @@ struct RootView : View {
             if viewRouter.currentPageId == .login {
                 LoginView(loginViewModel: LoginViewModel(router:viewRouter))
             } else if viewRouter.currentPageId == .home {
-                MovieListView(movieListViewModel:MovieListViewModel(), router:viewRouter)
+                MovieListView(movieListViewModel:MovieListViewModel(router:viewRouter), router:viewRouter)
             }
         }
         

@@ -18,6 +18,8 @@ struct MovieListView: View {
     var body: some View {
         NavigationView {
             VStack {
+                ActivityIndicator(shouldAnimate: self.$movieListViewModel.isLoading)
+                FetchMoviesTempButton(movieListViewModel: movieListViewModel)
                 LogoutButton(viewRouter:router)
             }.padding(Constants.Styles.pagePadding50)
         }
@@ -26,10 +28,11 @@ struct MovieListView: View {
 
 struct MovieListView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieListView(movieListViewModel: MovieListViewModel(), router: ViewRouter())
+        MovieListView(movieListViewModel: MovieListViewModel(router: ViewRouter()), router: ViewRouter())
     }
 }
 
+//MARK:- UI Elements
 struct LogoutButton:View{
     @ObservedObject var viewRouter: ViewRouter
     
@@ -38,18 +41,31 @@ struct LogoutButton:View{
         Button(action: {
             self.viewRouter.currentPageId = .login
         }) {
-            Text("LOGOUT")
+            Text("Logout")
+                .font(.headline)
+                .foregroundColor(.black)
+                .frame(width: 220, height: 60)
+                .padding(Constants.Styles.bottomPadding20)
+        }
+    }
+}
+
+struct FetchMoviesTempButton:View{
+    @ObservedObject var movieListViewModel:MovieListViewModel
+    
+    var body:some View {
+        
+        Button(action: {
+            self.movieListViewModel.loadMovies()
+        }) {
+            Text("LOAD MOVIES")
                 .font(.headline)
                 .foregroundColor(.white)
                 .padding()
                 .frame(width: 220, height: 60)
-                .background( Constants.Colors.buttonBlue)
+                .background(self.movieListViewModel.isLoading ? Color.gray : Color.black)
                 .cornerRadius(Constants.Styles.largeCornerRadius)
-        }
+        }.disabled(self.movieListViewModel.isLoading)
     }
-    
-    /*
-     NavigationLink(destination: MovieListView(), isActive:  $loginViewModel.isLoginEnable) {
-     */
     
 }

@@ -14,6 +14,20 @@ import SwiftUI
  */
 class MovieListViewModel:ObservableObject {
     
+    let viewRouter:ViewRouter!
+    @Published var isLoading = false
+    
+    init(router:ViewRouter) {
+        self.viewRouter = router
+    }
+    
+    func loadMovies(){
+        self.isLoading = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+             self.isLoading = false
+        }
+    }
 }
 
 

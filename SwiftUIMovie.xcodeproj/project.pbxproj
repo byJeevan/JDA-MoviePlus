@@ -22,7 +22,7 @@
 		04819C86244AD6CD005C0363 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C85244AD6CD005C0363 /* ViewRouter.swift */; };
 		04819C88244AD73D005C0363 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C87244AD73D005C0363 /* RootView.swift */; };
 		04819C8B244ADB5B005C0363 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C8A244ADB5B005C0363 /* MovieListViewModel.swift */; };
-		04819C8E244AE458005C0363 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C8D244AE458005C0363 /* Toast.swift */; };
+		04819C8E244AE458005C0363 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C8D244AE458005C0363 /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		04819C85244AD6CD005C0363 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		04819C87244AD73D005C0363 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		04819C8A244ADB5B005C0363 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
-		04819C8D244AE458005C0363 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		04819C8D244AE458005C0363 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +92,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04370EDD244B01770031D9FA /* Network Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Network Manager";
+			sourceTree = "<group>";
+		};
 		044B76E4244A2836007AB0B5 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +122,7 @@
 		044B76EF244A2836007AB0B5 /* SwiftUIMovie */ = {
 			isa = PBXGroup;
 			children = (
+				04370EDD244B01770031D9FA /* Network Manager */,
 				04819C8C244AE44B005C0363 /* Common Views */,
 				04819C89244ADAAB005C0363 /* RootView */,
 				044B7729244A3FC3007AB0B5 /* Movie List */,
@@ -187,7 +195,7 @@
 		04819C8C244AE44B005C0363 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
-				04819C8D244AE458005C0363 /* Toast.swift */,
+				04819C8D244AE458005C0363 /* ActivityIndicator.swift */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -331,7 +339,7 @@
 				04819C88244AD73D005C0363 /* RootView.swift in Sources */,
 				044B772B244A3FD5007AB0B5 /* MovieListView.swift in Sources */,
 				044B7721244A28B4007AB0B5 /* LoginView.swift in Sources */,
-				04819C8E244AE458005C0363 /* Toast.swift in Sources */,
+				04819C8E244AE458005C0363 /* ActivityIndicator.swift in Sources */,
 				04819C86244AD6CD005C0363 /* ViewRouter.swift in Sources */,
 				04819C8B244ADB5B005C0363 /* MovieListViewModel.swift in Sources */,
 			);
