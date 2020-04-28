@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0429CBDE245835C500F5D522 /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429CBDD245835C500F5D522 /* Shows.swift */; };
 		04370F0B244B6F430031D9FA /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04370EFD244B6F430031D9FA /* ParameterEncoding.swift */; };
 		04370F0C244B6F430031D9FA /* URLParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04370EFE244B6F430031D9FA /* URLParameterEncoding.swift */; };
 		04370F0D244B6F430031D9FA /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04370EFF244B6F430031D9FA /* JSONParameterEncoder.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0429CBDD245835C500F5D522 /* Shows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		04370EFD244B6F430031D9FA /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		04370EFE244B6F430031D9FA /* URLParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameterEncoding.swift; sourceTree = "<group>"; };
 		04370EFF244B6F430031D9FA /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		044B7729244A3FC3007AB0B5 /* Movie List */ = {
 			isa = PBXGroup;
 			children = (
+				0429CBDD245835C500F5D522 /* Shows.swift */,
 				044B772A244A3FD5007AB0B5 /* MovieListView.swift */,
 				04819C8A244ADB5B005C0363 /* MovieListViewModel.swift */,
 				04370F16244B6FF50031D9FA /* Movie.swift */,
@@ -413,6 +416,7 @@
 				044B76F1244A2836007AB0B5 /* AppDelegate.swift in Sources */,
 				044B7725244A2D76007AB0B5 /* LoginViewModel.swift in Sources */,
 				044B76F3244A2836007AB0B5 /* SceneDelegate.swift in Sources */,
+				0429CBDE245835C500F5D522 /* Shows.swift in Sources */,
 				04819C88244AD73D005C0363 /* RootView.swift in Sources */,
 				04370F0B244B6F430031D9FA /* ParameterEncoding.swift in Sources */,
 				044B772B244A3FD5007AB0B5 /* MovieListView.swift in Sources */,

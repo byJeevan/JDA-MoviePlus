@@ -87,7 +87,7 @@ struct LoginButton:View{
         
         Button(action: {
             self.loginViewModel.validateLoginButton()
-            }) {
+        }) {
             Text("LOGIN")
                 .font(.headline)
                 .foregroundColor(.white)
@@ -97,10 +97,10 @@ struct LoginButton:View{
                 .cornerRadius(Constants.Styles.largeCornerRadius)
         }
         .alert(isPresented: $loginViewModel.isLoginAlertShown) {
-                   Alert(title: Text("Invalid Credentails !!"), message: Text("Please login with valid username or password"), dismissButton: .default(Text("OK")))
-               }
+            Alert(title: Text("Invalid Credentails !!"), message: Text("Please login with valid username or password"), dismissButton: .default(Text("OK")))
+        }
         .disabled(!loginViewModel.isLoginEnable)
-         
+        
     }
     
     /*

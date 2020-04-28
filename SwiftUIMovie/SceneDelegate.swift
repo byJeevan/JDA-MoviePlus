@@ -65,15 +65,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 //********todo :****/
+ 
+//registraation link
+//call - list of all moviews + Pagination //Grid view in Home
 
-//show toast
-//registraation link + Thumb image
-//Network integration
-//call - list of all moviews
-//Grid view in Home
+//Detailed movie view  + Suggested movies
 
 
 //Questions
 //why $
 //$viewModel.isLogin.wrappedValue ---> viewModel.isLogin
 
+//why  \.self

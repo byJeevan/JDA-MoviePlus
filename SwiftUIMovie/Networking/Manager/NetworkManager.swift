@@ -25,11 +25,11 @@ enum Result<String>{
 
 struct NetworkManager {
     static let environment : NetworkEnvironment = .staging
-    static let MovieAPIKey = "d156ee8a7d88cc93de2b0c5fb01ba511"
+    static let MovieAPIKey = ""
     let router = Router<MovieApi>()
     
-    func getNewMovies(page: Int, completion: @escaping (_ movie: [Movie]?,_ error: String?)->()){
-       router.request(.newMovies(page: page)) { data, response, error in
+    func getAllShows(page: Int, completion: @escaping (_ movie: [ShowsApiResponse]?,_ error: String?)->()){
+       router.request(.shows(page: page)) { data, response, error in
             
             if error != nil {
                 completion(nil, "Please check your network connection.")
@@ -47,8 +47,8 @@ struct NetworkManager {
                         print(responseData)
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
                         print(jsonData)
-                        let apiResponse = try JSONDecoder().decode(MovieApiResponse.self, from: responseData)
-                        completion(apiResponse.movies,nil)
+                        let apiResponse = try JSONDecoder().decode([ShowsApiResponse].self, from: responseData)
+                        completion(apiResponse,nil)
                     }catch {
                         print(error)
                         completion(nil, NetworkResponse.unableToDecode.rawValue)

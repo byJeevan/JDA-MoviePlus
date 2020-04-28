@@ -9,31 +9,37 @@
 import Foundation
 import SwiftUI
 
+
+// https://api.themoviedb.org/3/search/movie?api_key=d156ee8a7d88cc93de2b0c5fb01ba511&language=en-US&query=movie&page=1&include_adult=false&region=india
+
 /*
  * View Model class for Movie List (Home page)
  */
-class MovieListViewModel:ObservableObject {
+class MovieListViewModel:ObservableObject, Identifiable {
     var networkManager: NetworkManager!
-    
+    var id: String = UUID().uuidString
+
     let viewRouter:ViewRouter!
     @Published var isLoading = false
+    @Published var allShows:[ShowsApiResponse] = []
+    private var pageCounter = 1
     
     init(router:ViewRouter, networkManager:NetworkManager) {
         self.viewRouter = router
         self.networkManager = networkManager
-        
+        self.loadMovies()
     }
     
     func loadMovies(){
         self.isLoading = true
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.networkManager.getNewMovies(page: 1) { movies, error in
-//                self.isLoading = false
+        self.networkManager.getAllShows(page: pageCounter) { movies, error in
+            DispatchQueue.main.async {
                 if error == nil {
-                    print(movies)
+                    self.isLoading = false
+                    self.allShows = movies ?? [ShowsApiResponse]()
                 }
-//            }
+            }
             
         }
     }

@@ -5,7 +5,7 @@
 //  Created by Jeevan-1382 on 18/04/20.
 //  Copyright © 2020 Jeevan-1382. All rights reserved.
 //
-
+import Foundation
 import SwiftUI
 
 /*
@@ -13,10 +13,22 @@ import SwiftUI
  */
 struct MovieListView: View {
     @ObservedObject var movieListViewModel:MovieListViewModel
+
     let router:ViewRouter
     var body: some View {
         NavigationView {
             VStack {
+                 
+          
+                ForEach( (0...self.$movieListViewModel.allShows.wrappedValue.count) , id: \.self) { show in
+                            Text("\(show) .")
+                }
+                 
+//                GridStack(rows: 4, columns: 4) { row, col in
+//                    Image(systemName: "\(row * 4 + col).circle")
+//                    Text("R\(row) C\(col)")
+//                }
+                
                 ActivityIndicator(shouldAnimate: self.$movieListViewModel.isLoading)
                 FetchMoviesTempButton(movieListViewModel: movieListViewModel)
                 LogoutButton(viewRouter:router)
@@ -36,6 +48,7 @@ struct LogoutButton:View{
     @ObservedObject var viewRouter: ViewRouter
     
     var body:some View {
+         
         Button(action: {
             self.viewRouter.currentPageId = .login
         }) {
@@ -67,3 +80,31 @@ struct FetchMoviesTempButton:View{
     }
     
 }
+
+
+struct GridStack<Content: View>: View {
+    let rows: Int
+    let columns: Int
+    let content: (Int, Int) -> Content
+
+    var body: some View {
+        VStack {
+            ForEach(0 ..< rows, id: \.self) { row in
+                HStack {
+                    ForEach(0 ..< self.columns, id: \.self) { column in
+                        self.content(row, column)
+                    }
+                }
+            }
+        }
+    }
+
+    init(rows: Int, columns: Int, @ViewBuilder content: @escaping (Int, Int) -> Content) {
+        self.rows = rows
+        self.columns = columns
+        self.content = content
+    }
+}
+
+
+ 
