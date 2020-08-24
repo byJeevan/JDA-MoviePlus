@@ -25,11 +25,42 @@ enum Result<String>{
 
 struct NetworkManager {
     static let environment : NetworkEnvironment = .staging
-    static let MovieAPIKey = ""
     let router = Router<MovieApi>()
     
-    func getAllShows(page: Int, completion: @escaping (_ movie: [ShowsApiResponse]?,_ error: String?)->()){
-       router.request(.shows(page: page)) { data, response, error in
+    func getUpcomingMovies(page: Int, completion: @escaping (_ movie: MovieBaseModel?,_ error: String?)->()){
+       
+        router.request(.upcoming) { data, response, error in
+            
+            if error != nil {
+                completion(nil, "Please check your network connection.")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        //TODO : util that decode 
+                        print(responseData)
+                        let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
+                        print(jsonData)
+                        let apiResponse = try JSONDecoder().decode(MovieBaseModel.self, from: responseData)
+                        completion(apiResponse,nil)
+                    }catch {
+                        print(error)
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                case .failure(let networkFailureError):
+                    completion(nil, networkFailureError)
+                }
+            }
+        }
+        
+      /* router.request(.shows(page: page)) { data, response, error in
             
             if error != nil {
                 completion(nil, "Please check your network connection.")
@@ -57,7 +88,7 @@ struct NetworkManager {
                     completion(nil, networkFailureError)
                 }
             }
-        }
+        }*/
     }
     
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String>{

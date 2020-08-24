@@ -16,10 +16,9 @@ enum NetworkEnvironment {
 }
 
 public enum MovieApi {
-    case recommended(id:Int)
-    case popular(page:Int)
-    case video(id:Int)
-    case shows(page:Int)
+    case upcoming
+    case topRated
+    case popular
 }
 
 extension MovieApi: EndPointType {
@@ -28,7 +27,7 @@ extension MovieApi: EndPointType {
         switch NetworkManager.environment {
         case .production: return "https://api.themoviedb.org/3/movie/"
         case .qa: return "https://qa.themoviedb.org/3/movie/"
-        case .staging: return "http://api.tvmaze.com" //working
+        case .staging: return "https://api.themoviedb.org/3" //working
         }
     }
     
@@ -39,28 +38,35 @@ extension MovieApi: EndPointType {
     
     var path: String {
         switch self {
-        case .shows:
-                return "shows" //working
-        case .recommended(let id):
-            return "\(id)/recommendations"
+        case .upcoming:
+            return "/movie/upcoming" //working
+        case .topRated:
+            return "/movie/top_rated"
         case .popular:
-            return "popular"
-        case .video(let id):
-            return "\(id)/videos"
+            return "/movie/popular"
         }
     }
-    
     var httpMethod: HTTPMethod {
         return .get
     }
     
     var task: HTTPTask {
         switch self {
-        case .shows(let page):
+        case .upcoming:
             return .requestParameters(bodyParameters: nil,
                                       bodyEncoding: .urlEncoding,
-                                      urlParameters: ["page":page,
-                                                      "api_key":NetworkManager.MovieAPIKey])
+                                      urlParameters: ["api_key":Config.movieDBAPIKey,
+                                                      "language" : Config.language_EN])
+        case .topRated :
+            return .requestParameters(bodyParameters: nil,
+                                      bodyEncoding: .urlEncoding,
+                                      urlParameters: ["api_key":Config.movieDBAPIKey,
+                                                      "language" : Config.language_EN])
+        case .popular :
+            return .requestParameters(bodyParameters: nil,
+                                      bodyEncoding: .urlEncoding,
+                                      urlParameters: ["api_key":Config.movieDBAPIKey,
+                                                      "language" : Config.language_EN])
         default:
             return .request
         }

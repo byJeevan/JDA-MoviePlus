@@ -19,7 +19,7 @@ enum PageId {
 class ViewRouter: ObservableObject {
     
     let objectWillChange = PassthroughSubject<ViewRouter,Never>() // passes its data to any view that’s observing. i.e. RootView in our case.
-    var currentPageId:PageId = .login {
+    var currentPageId:PageId = .home {
         didSet {
              objectWillChange.send(self)
         }

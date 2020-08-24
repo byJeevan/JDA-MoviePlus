@@ -30,7 +30,8 @@ struct Constants {
 struct Config {
     static let testUserName = "admin"
     static let testPassword = "admin"
-    
+    static let movieDBAPIKey = "0e24695357b5fd36cd2dfc8b20c15e2a"
+    static let language_EN = "en-US"
 }
 
 

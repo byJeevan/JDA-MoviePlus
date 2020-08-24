@@ -17,12 +17,13 @@ import SwiftUI
  */
 class MovieListViewModel:ObservableObject, Identifiable {
     var networkManager: NetworkManager!
-    var id: String = UUID().uuidString
-
+//    var id: String = UUID().uuidString
     let viewRouter:ViewRouter!
+    private var pageCounter = 1 //cursor for pagination
+    
+    //Publishers
     @Published var isLoading = false
-    @Published var allShows:[ShowsApiResponse] = []
-    private var pageCounter = 1
+    @Published var upcoming:[Results] = []
     
     init(router:ViewRouter, networkManager:NetworkManager) {
         self.viewRouter = router
@@ -33,17 +34,14 @@ class MovieListViewModel:ObservableObject, Identifiable {
     func loadMovies(){
         self.isLoading = true
         
-        self.networkManager.getAllShows(page: pageCounter) { movies, error in
+        self.networkManager.getUpcomingMovies(page: pageCounter) { movies, error in
             DispatchQueue.main.async {
                 if error == nil {
                     self.isLoading = false
-                    self.allShows = movies ?? [ShowsApiResponse]()
+                    self.upcoming = movies?.results ?? [Results]()
                 }
             }
             
         }
     }
 }
-
-
-
