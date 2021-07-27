@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ActivityIndicator: UIViewRepresentable {
+   
     @Binding var shouldAnimate: Bool
     
     func makeUIView(context: Context) -> UIActivityIndicatorView {
@@ -25,8 +26,3 @@ struct ActivityIndicator: UIViewRepresentable {
     }
 }
 
-struct ActivityIndicator_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("Hello, World!")
-    }
-}

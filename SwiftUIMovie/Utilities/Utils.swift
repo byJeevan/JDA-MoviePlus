@@ -20,7 +20,7 @@ struct Constants {
     
     struct Styles {
         static let smallCornerRadius:CGFloat = 5.0
-        static let largeCornerRadius:CGFloat = 15.0
+			  static let largeCornerRadius:CGFloat = 30.0
         static let bottomPadding20:CGFloat = 20.0
         static let pagePadding50:CGFloat = 50.0
     }
@@ -30,7 +30,7 @@ struct Constants {
 struct Config {
     static let testUserName = "admin"
     static let testPassword = "admin"
-    static let movieDBAPIKey = "0e24695357b5fd36cd2dfc8b20c15e2a"
+    static let movieDBAPIKey = "<your MovieDB API key>"
     static let language_EN = "en-US"
 }
 

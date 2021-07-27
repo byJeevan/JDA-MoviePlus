@@ -7,65 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A6CA286F-B8C3-4113-BDC7-58CDC19629B1"
-            shouldBeEnabled = "No"
+            uuid = "465730C1-56BA-4727-A37A-05ED62C8BA44"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SwiftUIMovie/Movie List/MovieListViewModel.swift"
+            filePath = "SwiftUIMovie/Common Views/ActivityIndicator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "loadMovies()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A6CA286F-B8C3-4113-BDC7-58CDC19629B1 - 2d47e68052510c42"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftUIMovie.MovieListViewModel.loadMovies() -&gt; ()"
-                  moduleName = "SwiftUIMovie"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jeevan/Desktop/MoviePlus/SwiftUIMovie/Movie%20List/MovieListViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "90">
-               </Location>
-               <Location
-                  uuid = "A6CA286F-B8C3-4113-BDC7-58CDC19629B1 - 6b791605311ada1b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;SwiftUIMovie.ShowsApiResponse&gt;&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in SwiftUIMovie.MovieListViewModel.loadMovies() -&gt; ()"
-                  moduleName = "SwiftUIMovie"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jeevan/Desktop/MoviePlus/SwiftUIMovie/Movie%20List/MovieListViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "202">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C18D11E7-55F2-489F-8DD3-3C9083A7813B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwiftUIMovie/All Movies/View/MovieListView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "movieItemWider(_:)"
-            landmarkType = "7">
+            startingLineNumber = "29"
+            endingLineNumber = "29">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

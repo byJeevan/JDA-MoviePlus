@@ -10,7 +10,7 @@ import Foundation
 
 //unused so far.
 class UserModel:Codable {
-    var userName:String? = "admin"
-    var password:String? = "admin"
-    var isRegistered:Bool?
+  var userName:String? = "admin"
+  var password:String? = "admin"
+  var isRegistered:Bool?
 }

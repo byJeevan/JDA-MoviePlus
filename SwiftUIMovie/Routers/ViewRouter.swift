@@ -10,19 +10,19 @@ import Foundation
 import Combine
 import SwiftUI
 
-enum PageId {
-    case login
-    case home
-    case registration
+enum PageId: Equatable {
+  case login
+  case home
+  case movieDetail(movieId:Int)
 }
 
 class ViewRouter: ObservableObject {
-    
-    let objectWillChange = PassthroughSubject<ViewRouter,Never>() // passes its data to any view that’s observing. i.e. RootView in our case.
-    var currentPageId:PageId = .home {
-        didSet {
-             objectWillChange.send(self)
-        }
+
+  let objectWillChange = PassthroughSubject<ViewRouter,Never>() // passes its data to any view that’s observing. i.e. RootView in our case.i
+  var currentPageId:PageId = UserDefaults.standard.isLoggedIn ? .home : .login {
+    didSet {
+      objectWillChange.send(self)
     }
-    
+  }
+
 }
