@@ -6,49 +6,77 @@
 //  Copyright © 2021 Jeevan-1382. All rights reserved.
 //
 
-import Foundation
-import Combine
+import SwiftUI
 
 
-class MoviewDetailViewModel:ObservableObject, Identifiable {
+struct MoviewDetailState {
+  var service: NetworkManager
+  var movieDetail: MovieDetailModel?
+}
 
-  var networkManager: NetworkManager!
-  var selectedMovieId:Int!
-  let willChange = PassthroughSubject<Void, Never>()
-  @Published var isMovieDetailVisible: Bool = false
-  var genras:String?
-  var duration:String?
+enum MoviewDetailInput {
+  // TODO : favourite
+}
 
-  var movieDetail:MovieDetailModel? {
-    didSet{
-      var result:String = ""
-      movieDetail?.genres?.forEach({ (genre) in
-        result.append("\(genre.name ?? ""), ")
-      })
-      genras = String(result.dropLast(2))
-
-      if let runtime = movieDetail?.runtime  {
-        duration = "\(runtime / 60) Hours \(runtime % 60) Minuts "
-      }
-
-    }
-  }
-
-  init(selectedMovieId:Int, networkManager:NetworkManager) {
+final class MoviewDetailViewModel: ViewModel {
+  
+  @Published var state: MoviewDetailState
+  var selectedMovieId: Int
+  
+  init(service: NetworkManager, selectedMovieId: Int) {
+    self.state = MoviewDetailState(service: service)
     self.selectedMovieId = selectedMovieId
-    self.networkManager = networkManager
   }
-
-  func loadMovieDetails(){
-
-    self.networkManager.getMovieDetail(movieId: selectedMovieId) { (movieDetail, error) in
+  
+  func loadMovieDetails() {
+    self.state.service.getMovieDetail(movieId: selectedMovieId) { (movieDetail, error) in
       DispatchQueue.main.async {
         if error == nil {
-          self.movieDetail = movieDetail
-          self.isMovieDetailVisible = true
+          self.state.movieDetail = movieDetail
         }
       }
-
     }
+  }
+  
+  
+  var posterPath: String  {
+    self.state.movieDetail?.poster_path ?? ""
+  }
+  
+  var movieTitle: String {
+    self.state.movieDetail?.title ?? ""
+  }
+  
+  var averageVote: Double {
+    self.state.movieDetail?.vote_average ?? 0.0
+  }
+  
+  var overview: String {
+    self.state.movieDetail?.overview ?? ""
+  }
+  
+  var genre: String {
+    var result = ""
+    self.state.movieDetail?.genres?.forEach({ (genre) in
+      result.append("\(genre.name ?? ""), ")
+    })
+    return String(result.dropLast(2))
+  }
+  
+  var duration: String {
+    var result = "Run Time : N/a"
+    if let runtime = self.state.movieDetail?.runtime  {
+      result = "Run Time : \(runtime / 60) Hours \(runtime % 60) Minuts "
+    }
+    return result
+  }
+
+  
+}
+
+extension MoviewDetailViewModel {
+  
+  func trigger(_ input: MoviewDetailState) {
+     
   }
 }

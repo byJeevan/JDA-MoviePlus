@@ -10,19 +10,22 @@ import SwiftUI
 
 struct MovieDetailView: View {
 
-  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-  @ObservedObject var viewModel:MoviewDetailViewModel
-
+  @ObservedObject var viewModel: MoviewDetailViewModel
+ 
+  @Environment(\.presentationMode) var presentationMode
+ 
+  init(viewModel: MoviewDetailViewModel) {
+    self.viewModel = viewModel
+  }
+  
   var body: some View {
 
     ZStack(alignment: .top) {
 
-      if $viewModel.isMovieDetailVisible.wrappedValue {
-
         ScrollView {
 
           GeometryReader{reader in
-            MovieBGCard(moviePosterPath: $viewModel.movieDetail.wrappedValue?.poster_path ?? "")
+            MovieBGCard(moviePosterPath: viewModel.posterPath)
               .offset(y: -reader.frame(in: .global).minY)
               // Adding parallax effect....
               .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY + 500)
@@ -36,7 +39,7 @@ struct MovieDetailView: View {
             VStack(alignment: .leading, spacing: 4) {
 
               HStack(alignment: .bottom) {
-                Text($viewModel.movieDetail.wrappedValue?.title ?? "").font(.title).foregroundColor(.black).bold()
+                Text(viewModel.movieTitle).font(.title).foregroundColor(.black).bold()
                 Spacer()
                 HStack(alignment: .center) {
                   Image(systemName: "star.fill")
@@ -44,19 +47,18 @@ struct MovieDetailView: View {
                     .frame(width: 25, height: 25)
                     .foregroundColor(.yellow)
 
-                  Text(String(format: "%.1f", Float($viewModel.movieDetail.wrappedValue?.vote_average ?? 0.0))).foregroundColor(Color.black).font(.title).bold()
+                  Text(String(format: "%.1f", viewModel.averageVote)).foregroundColor(Color.black).font(.title).bold()
                 }
               }
 
-              Text($viewModel.genras.wrappedValue ?? "").font(.subheadline).foregroundColor(.gray)
-              Text("Run Time : \($viewModel.duration.wrappedValue ?? "")").font(.subheadline).foregroundColor(.gray)
+              Text(viewModel.genre).font(.subheadline).foregroundColor(.gray)
+              Text(viewModel.duration).font(.subheadline).foregroundColor(.gray)
             }.padding()
 
             // row - 1
             VStack(alignment: .leading, spacing: 8) {
               Text("Brief Story :").font(.headline).foregroundColor(.black).bold()
-
-              Text($viewModel.movieDetail.wrappedValue?.overview ?? "").font(.subheadline).foregroundColor(.black).lineSpacing(8.0)
+              Text(viewModel.overview).font(.subheadline).foregroundColor(.black).lineSpacing(8.0)
 
             }.padding()
 
@@ -70,8 +72,7 @@ struct MovieDetailView: View {
           VStack(alignment: .leading, spacing: 4) {
 
             Button(action: {
-              self.presentationMode.wrappedValue.dismiss()
-
+              presentationMode.wrappedValue.dismiss()
             }) {
               Text("ADD TO WATCHLIST")
                 .fontWeight(.bold)
@@ -89,7 +90,7 @@ struct MovieDetailView: View {
         HStack{
           Spacer()
           Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
+             presentationMode.wrappedValue.dismiss()
           }) {
 
             Image(systemName: "xmark")
@@ -102,7 +103,7 @@ struct MovieDetailView: View {
         }
         .padding(EdgeInsets.init(top: 40, leading: 0, bottom: 0, trailing: 32))
         .background(Color.clear)
-      }
+      
     }
     .edgesIgnoringSafeArea(.all)
     .navigationBarHidden(true)
@@ -114,17 +115,10 @@ struct MovieDetailView: View {
   }
 }
 
-struct MovieBGCard: View {
-  var moviePosterPath:String
 
-  var body: some View {
-    let fullPosterURL = URL.init(string: "https://image.tmdb.org/t/p/w500\(moviePosterPath)")!
-    WebImage(imageURL:fullPosterURL)
-  }
-}
 
-struct MovieDetailView_Previews: PreviewProvider {
-  static var previews: some View {
-    MovieDetailView( viewModel: MoviewDetailViewModel(selectedMovieId: 19404, networkManager: NetworkManager()))
-  }
-}
+//struct MovieDetailView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    MovieDetailView( viewModel: MoviewDetailViewModel(selectedMovieId: 19404, networkManager: NetworkManager()))
+//  }
+//}

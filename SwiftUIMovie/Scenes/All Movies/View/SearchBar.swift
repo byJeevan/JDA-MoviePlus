@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/*
 struct SearchBar: View {
   @ObservedObject var viewModel:MovieListViewModel
 
@@ -65,3 +66,4 @@ struct SearchBar: View {
     }
   }
 }
+*/

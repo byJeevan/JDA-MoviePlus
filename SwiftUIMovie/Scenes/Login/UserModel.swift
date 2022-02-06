@@ -8,9 +8,7 @@
 
 import Foundation
 
-//unused so far.
-class UserModel:Codable {
-  var userName:String? = "admin"
-  var password:String? = "admin"
-  var isRegistered:Bool?
+struct UserModel  {
+  var userName: String
+  var password: String
 }
