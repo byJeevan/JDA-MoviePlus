@@ -10,12 +10,13 @@ import SwiftUI
 
 struct UserNameField: View {
   var userNameString: Binding<String>
-  
+  var isErrorShown: Bool
   var body: some View {
     TextField("Username", text: userNameString)
       .padding()
-      .background(Constants.Colors.lightGray)
+      .background(isErrorShown ? Color.red : Constants.Colors.lightGray)
       .cornerRadius(Constants.Styles.smallCornerRadius)
       .padding(.bottom, Constants.Styles.bottomPadding20)
+    
   }
 }

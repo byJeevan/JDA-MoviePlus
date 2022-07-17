@@ -27,46 +27,16 @@ final class LoginViewModel: ViewModel {
   var state: LoginViewState
   
   init(service: NetworkManager) {
-    let user = UserModel(userName: "admin1", password: "admin")
-    self.state = LoginViewState(service: service, user: user, isValidUser: false)
+    self.state = LoginViewState(service: service, user: UserModel(userName: "", password: ""), isValidUser: false)
+#if DEBUG
+    let user = UserModel(userName: "admin", password: "admin") // To help debug
+    self.state = LoginViewState(service: service, user: user, isValidUser: true)
+#endif
   }
-   
-  /*
-   @Published var userName = "" {
-   didSet {
-   self.changeLoginButtonState()
-   }
-   }
-   
-   @Published var userPass = "" {
-   didSet{
-   self.changeLoginButtonState()
-   }
-   }
-   
-   @Published var isLoginEnable = false
-   @Published var isLoginAlertShown = false
-   
-   private func changeLoginButtonState(){
-   if (userName.count > 0 && userPass.count > 0) {
-   self.isLoginEnable = true
-   }
-   else{
-   self.isLoginEnable = false
-   }
-   }
-   
-   func validateLoginButton() {
-   if (userName.lowercased() == Config.testUserName && userPass.lowercased() == Config.testPassword) {
-   //      viewRouter.currentPageId = .home
-   viewRouter.view(for: .movieList, with: nil)
-   }
-   else{
-   self.isLoginEnable = false
-   self.isLoginAlertShown = true
-   }
-   }
-   */
+  
+  func validateUser() {
+    self.state.isValidUser = (self.state.user.userName.lowercased() == Config.testUserName && self.state.user.password.lowercased() == Config.testPassword)
+  }
   
 }
 
@@ -74,10 +44,9 @@ extension LoginViewModel {
   func trigger(_ input: LoginViewInput) {
     switch input {
       case .userNameChange:
-        self.state.isValidUser = true
-        break
+        self.validateUser()
       case .passwordChange:
-        break
+        self.validateUser()
       case .buttonTapEvent:
         break
     }

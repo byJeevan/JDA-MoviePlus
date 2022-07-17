@@ -12,9 +12,9 @@ import SwiftUI
 
 struct MovieListState {
   var service: NetworkManager
-  var upcoming: [Results] = [Results]()
-  var toprated: [Results] = [Results]()
-  var searchResult: [Results] = [Results]()
+  var upcoming: [Results] = []
+  var toprated: [Results] = []
+  var searchResult: [Results] = []
   var selectedMovieId: Int?
   
 }

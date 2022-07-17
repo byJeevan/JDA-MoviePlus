@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 struct LoginButton: View {
   
   var shouldEnable: Binding<Bool>

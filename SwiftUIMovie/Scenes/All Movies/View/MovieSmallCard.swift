@@ -26,9 +26,3 @@ struct MovieSmallCard: View {
     
   }
 }
-
-//struct MovieSmallCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MovieSmallCard(Resul)
-//    }
-//}

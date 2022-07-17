@@ -30,7 +30,6 @@
 		044B7725244A2D76007AB0B5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B7724244A2D76007AB0B5 /* LoginViewModel.swift */; };
 		044B7728244A2EC0007AB0B5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B7727244A2EC0007AB0B5 /* UserModel.swift */; };
 		044B772B244A3FD5007AB0B5 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B772A244A3FD5007AB0B5 /* MovieListView.swift */; };
-		04819C86244AD6CD005C0363 /* _ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C85244AD6CD005C0363 /* _ViewRouter.swift */; };
 		04819C88244AD73D005C0363 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C87244AD73D005C0363 /* RootView.swift */; };
 		04819C8B244ADB5B005C0363 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C8A244ADB5B005C0363 /* MovieListViewModel.swift */; };
 		04819C8E244AE458005C0363 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819C8D244AE458005C0363 /* ActivityIndicator.swift */; };
@@ -104,7 +103,6 @@
 		044B7724244A2D76007AB0B5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		044B7727244A2EC0007AB0B5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		044B772A244A3FD5007AB0B5 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
-		04819C85244AD6CD005C0363 /* _ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _ViewRouter.swift; sourceTree = "<group>"; };
 		04819C87244AD73D005C0363 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		04819C8A244ADB5B005C0363 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		04819C8D244AE458005C0363 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 		04370EDF244B0E360031D9FA /* Routers */ = {
 			isa = PBXGroup;
 			children = (
-				04819C85244AD6CD005C0363 /* _ViewRouter.swift */,
 				430A86CC27ACCE0C008975FB /* RoutingProtocol.swift */,
 				430A86CE27ACCE31008975FB /* LoginRouter.swift */,
 				430A86D027ACCE38008975FB /* MovieRouter.swift */,
@@ -589,7 +586,6 @@
 				4343EA7D27AE3A3700880CBB /* LoginTitle.swift in Sources */,
 				04370F11244B6F430031D9FA /* HTTPTask.swift in Sources */,
 				04370F15244B6F430031D9FA /* EndPointType.swift in Sources */,
-				04819C86244AD6CD005C0363 /* _ViewRouter.swift in Sources */,
 				0911B50C264F8D2300FE00C3 /* MovieDetailView.swift in Sources */,
 				4343EA7B27AE3A2C00880CBB /* LoginImage.swift in Sources */,
 				04370F0E244B6F430031D9FA /* NetworkManager.swift in Sources */,
